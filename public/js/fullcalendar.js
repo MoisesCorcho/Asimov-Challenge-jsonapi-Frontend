@@ -33,10 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
         events: async () => await getAppointments(),
         eventClick: async function(info) {
 
-            await showAppointment(info.event.id);
-
             // The click event will start when we click on an Appointment
-            // await deleteAppointment(info.event.id)
+            await showAppointment(info.event.id);
 
             // change the border color just for fun
             info.el.style.borderColor = 'red';
@@ -151,7 +149,7 @@ async function getAppointments()
     // La ventana de carga se mostrará solo la primera vez que se entre a esta ruta.
     if (loadingAppointments) {
         new Swal({
-            title: 'Espere por favor...',
+            title: 'Please, wait...',
             allowOutsideClick: false,
         })
         Swal.showLoading()
@@ -203,7 +201,7 @@ async function deleteAppointment(id)
 
         // Se muestra una ventana de carga mientras se resuelve la peticion.
         new Swal({
-            title: 'Espere por favor...',
+            title: 'Please, wait...',
             allowOutsideClick: false
         })
         Swal.showLoading()
@@ -212,7 +210,7 @@ async function deleteAppointment(id)
             // Se manda la peticion DELETE
             await appointmentApi.delete(`/appointments/${id}`);
 
-            Swal.fire('Eliminado', '', 'success')
+            Swal.fire('Deleted', '', 'success')
 
             // Se refrezca la obtencion de las citas desde la base de datos
             // solo despues de que haya pasado un segundo (1000)
@@ -242,7 +240,7 @@ async function showAppointment(id)
     try {
         // Se muestra una ventana de carga mientras se resuelve la peticion.
         new Swal({
-            title: 'Espere por favor...',
+            title: 'Please, wait...',
             allowOutsideClick: false
         })
         Swal.showLoading()
